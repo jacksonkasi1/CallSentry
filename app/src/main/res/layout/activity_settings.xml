@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="Settings" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:text="Unknown callers" />
+
+            <RadioGroup
+                android:id="@+id/rgUnknown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbUnkRing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Let it ring" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbUnkSilence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Silence — log it, don't ring" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbUnkReject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reject the call" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:text="Numbers the community flags as spam or fraud" />
+
+            <RadioGroup
+                android:id="@+id/rgSpam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbSpamAllow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Let it ring" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbSpamSilence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Silence — log it, don't ring" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbSpamReject"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reject the call" />
+            </RadioGroup>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/swContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Saved contacts always ring through" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:text="Privacy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:text="CallSentry evaluates every incoming call on your device. Your rules, relationships, labels and call history never leave this phone. No account, no upload." />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:text="About" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:text="CallSentry 0.1.0 (development build)\nKnow who's calling. Decide who gets through.\nUnknown stays unknown until evidence says otherwise." />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

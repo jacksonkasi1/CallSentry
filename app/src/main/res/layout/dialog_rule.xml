@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
+
+        <EditText
+            android:id="@+id/etPattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Number or prefix (e.g. 9876543210 or 140)"
+            android:inputType="phone"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/etLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Note (optional)"
+            android:inputType="text"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:text="Match" />
+
+        <RadioGroup
+            android:id="@+id/rgMatch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbExact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Exact" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbPrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starts with" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:text="Action" />
+
+        <RadioGroup
+            android:id="@+id/rgAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbActAllow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Allow" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbActSilence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Silence" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rbActReject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Block" />
+        </RadioGroup>
+    </LinearLayout>
+</ScrollView>

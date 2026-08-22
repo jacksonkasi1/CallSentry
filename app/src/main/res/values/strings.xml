@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CallSentry</string>
+    <string name="tagline">Know who\'s calling. Decide who gets through.</string>
+    <string name="tagline_secondary">Your calls. Your control.</string>
+</resources>

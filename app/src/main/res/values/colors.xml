@@ -1,0 +1,23 @@
+<resources>
+    <color name="sentryPrimary">#12405F</color>
+    <color name="sentryPrimaryDark">#0C2B41</color>
+    <color name="sentryPrimaryContainer">#1E5A85</color>
+    <color name="sentryNavy">#14213D</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="ic_launcher_background">#14213D</color>
+
+    <!-- Identity level palette -->
+    <color name="levelOfficial">#1B7F3B</color>
+    <color name="levelPartner">#00796B</color>
+    <color name="levelLikely">#1565C0</color>
+    <color name="levelPersonal">#3F51B5</color>
+    <color name="levelPossible">#9A6700</color>
+    <color name="levelUnknown">#5F6368</color>
+    <color name="levelDisputed">#C62828</color>
+
+    <!-- Decision palette -->
+    <color name="actionAllow">#1B7F3B</color>
+    <color name="actionSilence">#9A6700</color>
+    <color name="actionReject">#C62828</color>
+</resources>

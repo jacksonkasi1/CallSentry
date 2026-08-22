@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.CallSentry" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/sentryPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/sentryPrimaryContainer</item>
+        <item name="android:statusBarColor">@color/sentryNavy</item>
+    </style>
+</resources>
