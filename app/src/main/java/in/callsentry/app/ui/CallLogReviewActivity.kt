@@ -79,7 +79,10 @@ class CallLogReviewActivity : AppCompatActivity() {
         }
 
         if (hasPerms()) load() else permLauncher.launch(perms)
+    }
 
+    override fun onResume() {
+        super.onResume()
         Nav.setup(this, b.bottomNav.root, R.id.navScan)
     }
 

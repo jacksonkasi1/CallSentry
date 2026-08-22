@@ -6,8 +6,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import `in`.callsentry.app.R
 
 object Nav {
+
+    /**
+     * Wire the shared bottom navigation. Call from onResume of every tab
+     * screen so the highlight is always re-asserted for the visible page —
+     * the previous screen's footer keeps whatever was tapped on it.
+     */
     fun setup(context: Context, nav: BottomNavigationView, current: Int) {
-        nav.selectedItemId = current
         nav.setOnItemSelectedListener { item ->
             if (item.itemId == current) return@setOnItemSelectedListener true
             val target = when (item.itemId) {
@@ -22,5 +27,6 @@ object Nav {
             )
             true
         }
+        nav.selectedItemId = current
     }
 }

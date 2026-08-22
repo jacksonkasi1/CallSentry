@@ -44,12 +44,11 @@ class InstitutionsActivity : AppCompatActivity() {
         b.rvInstitutions.adapter = adapter
 
         b.fabAddInstitution.setOnClickListener { showAddDialog() }
-
-        Nav.setup(this, b.bottomNav.root, R.id.navBanks)
     }
 
     override fun onResume() {
         super.onResume()
+        Nav.setup(this, b.bottomNav.root, R.id.navBanks)
         refresh()
     }
 

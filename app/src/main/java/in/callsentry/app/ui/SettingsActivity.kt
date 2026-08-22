@@ -55,6 +55,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        Nav.setup(this, b.bottomNav.root, R.id.navSettings)
         sync()
     }
 

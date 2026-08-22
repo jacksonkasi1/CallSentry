@@ -12,65 +12,239 @@
         android:layout_height="?attr/actionBarSize"
         app:title="CallSentry" />
 
-    <!-- Slim banner, only when protection is off -->
+    <!-- Safety hero -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardRole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="4dp"
-        android:visibility="gone"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/actionReject">
+        app:cardCornerRadius="20dp"
+        app:cardElevation="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingStart="12dp"
-            android:paddingEnd="8dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp">
+            android:padding="16dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/ivShield"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/circle_bg"
+                android:padding="10dp"
+                android:src="@drawable/ic_shield"
+                android:contentDescription="Protection status" />
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:text="Protection is off — enable to screen calls" />
+                android:layout_marginStart="14dp"
+                android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRole"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="0dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="Enable" />
+                <TextView
+                    android:id="@+id/tvHeroTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    android:text="You're protected" />
+
+                <TextView
+                    android:id="@+id/tvHeroSub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:alpha="0.7"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:text="" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRole"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:minWidth="0dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="Enable protection"
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <!-- Stats tiles -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#1412405F">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvStatBlocked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                    android:text="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:textAppearance="?attr/textAppearanceLabelMedium"
+                    android:text="Blocked" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#1412405F">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvStatSilenced"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                    android:text="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:textAppearance="?attr/textAppearanceLabelMedium"
+                    android:text="Silenced" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#1412405F">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvStatChecked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                    android:text="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.7"
+                    android:textAppearance="?attr/textAppearanceLabelMedium"
+                    android:text="Checked" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- Quick shortcuts -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnScan"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            app:icon="@drawable/ic_search"
+            android:text="Scan callers" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSafe"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            app:icon="@drawable/ic_bank"
+            android:text="Safe call" />
+    </LinearLayout>
+
+    <!-- Recent protection activity -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:text="Recent activity" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="4dp">
+        android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCalls"
+            android:id="@+id/rvActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp" />
 
         <LinearLayout
-            android:id="@+id/llEmptyCalls"
+            android:id="@+id/llEmpty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -84,6 +258,7 @@
                 android:layout_height="48dp"
                 android:alpha="0.25"
                 android:src="@drawable/ic_shield"
+                android:tint="?attr/colorOnSurface"
                 android:contentDescription="" />
 
             <TextView
@@ -91,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:textAppearance="?attr/textAppearanceTitleSmall"
-                android:text="No calls yet" />
+                android:text="All clear" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,11 +274,11 @@
                 android:layout_marginTop="4dp"
                 android:alpha="0.7"
                 android:textAppearance="?attr/textAppearanceBodySmall"
-                android:text="Your call history will appear here" />
+                android:text="Nothing suspicious has been screened yet" />
         </LinearLayout>
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmerCalls"
+            android:id="@+id/shimmerActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone">
@@ -111,11 +286,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="4dp">
+                android:orientation="vertical">
 
-                <include layout="@layout/item_skeleton" />
-                <include layout="@layout/item_skeleton" />
                 <include layout="@layout/item_skeleton" />
                 <include layout="@layout/item_skeleton" />
                 <include layout="@layout/item_skeleton" />
