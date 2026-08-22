@@ -30,7 +30,6 @@
         </activity>
 
         <activity android:name=".ui.RulesActivity" android:exported="false" />
-        <activity android:name=".ui.RelationshipsActivity" android:exported="false" />
         <activity android:name=".ui.InstitutionsActivity" android:exported="false" />
         <activity android:name=".ui.InstitutionDetailActivity" android:exported="false" />
         <activity android:name=".ui.CallDetailActivity" android:exported="false" />

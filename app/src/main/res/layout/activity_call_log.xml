@@ -10,25 +10,17 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Review unsaved callers" />
+        app:title="Unsaved callers" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.7"
         android:textAppearance="?attr/textAppearanceBodySmall"
-        android:text="Numbers from your call log that are not in your contacts. Numbers that only called you (never dialled by you) are listed first — they deserve more scrutiny. Numbers you called yourself are likely known. Tap any number for controls. Nothing leaves this phone." />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRescan"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="4dp"
-        android:text="Scan again" />
+        android:text="Riskiest first — numbers that only called you. Tap for controls." />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLog"
@@ -41,7 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:visibility="gone"
+        android:gravity="center"
+        android:alpha="0.7"
         android:textAppearance="?attr/textAppearanceBodyMedium"
-        android:text="" />
+        android:text=""
+        android:visibility="gone" />
 </LinearLayout>

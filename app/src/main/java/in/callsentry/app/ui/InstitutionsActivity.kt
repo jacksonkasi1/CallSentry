@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -28,6 +29,8 @@ class InstitutionsActivity : AppCompatActivity() {
     private val categories = listOf(
         "BANK", "NBFC", "INSURANCE", "WALLET", "TELECOM", "GOVERNMENT", "OTHER"
     )
+
+    private data class Row(val inst: Institution, val declared: Boolean, val numbers: Int)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +53,12 @@ class InstitutionsActivity : AppCompatActivity() {
 
     private fun refresh() {
         Thread {
-            val list = app.db.institutions()
+            val rows = app.db.institutions().map {
+                Row(it, app.db.hasRelationship(it.id), app.db.numberCount(it.id))
+            }
             runOnUiThread {
-                adapter.submit(list)
-                b.tvEmptyInstitutions.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
+                adapter.submit(rows)
+                b.tvEmptyInstitutions.visibility = if (rows.isEmpty()) View.VISIBLE else View.GONE
             }
         }.start()
     }
@@ -86,9 +91,9 @@ class InstitutionsActivity : AppCompatActivity() {
 
     private inner class InstAdapter : RecyclerView.Adapter<InstAdapter.VH>() {
 
-        private val items = mutableListOf<Institution>()
+        private val items = mutableListOf<Row>()
 
-        fun submit(list: List<Institution>) {
+        fun submit(list: List<Row>) {
             items.clear()
             items.addAll(list)
             notifyDataSetChanged()
@@ -100,20 +105,34 @@ class InstitutionsActivity : AppCompatActivity() {
         override fun getItemCount() = items.size
 
         override fun onBindViewHolder(holder: VH, position: Int) {
-            val inst = items[position]
-            Thread {
-                val count = app.db.numberCount(inst.id)
-                runOnUiThread {
-                    holder.b.tvInstName.text = inst.name
-                    holder.b.tvInstMeta.text = "${
-                        inst.category.replaceFirstChar { it.uppercase() }
-                    } · $count verified number(s)"
-                }
-            }.start()
+            val row = items[position]
+            holder.b.tvInstName.text = row.inst.name
+            holder.b.tvInstMeta.text =
+                "${row.inst.category.replaceFirstChar { it.uppercase() }} · ${row.numbers} number(s)"
+
+            val declaredColor = ContextCompat.getColor(holder.b.root.context, R.color.levelOfficial)
+            val offColor = ContextCompat.getColor(holder.b.root.context, R.color.levelUnknown)
+            if (row.declared) {
+                holder.b.btnRel.setIconResource(R.drawable.ic_person_check)
+                holder.b.btnRel.iconTint = android.content.res.ColorStateList.valueOf(declaredColor)
+            } else {
+                holder.b.btnRel.setIconResource(R.drawable.ic_person_add)
+                holder.b.btnRel.iconTint = android.content.res.ColorStateList.valueOf(offColor)
+            }
+            holder.b.btnRel.setOnClickListener {
+                Toast.makeText(
+                    this@InstitutionsActivity,
+                    if (row.declared) "Removed: ${row.inst.name}" else "You do business with ${row.inst.name}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Thread { app.db.toggleRelationship(row.inst.id) }.start()
+                refresh()
+            }
+
             holder.b.root.setOnClickListener {
                 startActivity(
                     Intent(this@InstitutionsActivity, InstitutionDetailActivity::class.java)
-                        .putExtra("id", inst.id)
+                        .putExtra("id", row.inst.id)
                 )
             }
         }

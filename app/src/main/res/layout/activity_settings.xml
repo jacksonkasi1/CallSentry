@@ -101,8 +101,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:alpha="0.8"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:text="CallSentry evaluates every incoming call on your device. Your rules, relationships, labels and call history never leave this phone. No account, no upload." />
+                android:text="Every decision happens on this device. No account, no upload, no analytics." />
 
             <TextView
                 android:layout_width="match_parent"
@@ -115,8 +116,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:alpha="0.8"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:text="CallSentry 0.1.0 (development build)\nKnow who's calling. Decide who gets through.\nUnknown stays unknown until evidence says otherwise." />
+                android:text="CallSentry 0.1.0 — Know who's calling. Decide who gets through." />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -20,4 +20,10 @@
     <color name="actionAllow">#1B7F3B</color>
     <color name="actionSilence">#9A6700</color>
     <color name="actionReject">#C62828</color>
+
+    <!-- Soft tinted circles (10-12% alpha) for icon chips -->
+    <color name="circleNavy">#1F12405F</color>
+    <color name="circleGreen">#1F1B7F3B</color>
+    <color name="circleGray">#1F5F6368</color>
+    <color name="textSecondary">#99000000</color>
 </resources>

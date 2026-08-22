@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import `in`.callsentry.app.CallSentryApp
@@ -41,20 +42,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        b.rgPolicy.setOnCheckedChangeListener { _, id ->
-            val value = when (id) {
-                R.id.rbRing -> "ring"
-                R.id.rbReject -> "reject"
+        b.tgPolicy.addOnButtonCheckedListener { _, checkedId, isChecked ->
+            if (!isChecked) return@addOnButtonCheckedListener
+            val value = when (checkedId) {
+                R.id.btnRing -> "ring"
+                R.id.btnReject -> "reject"
                 else -> "silence"
             }
             app.prefs.edit().putString("unknown_policy", value).apply()
         }
 
-        b.btnRules.setOnClickListener { startActivity(Intent(this, RulesActivity::class.java)) }
-        b.btnInstitutions.setOnClickListener { startActivity(Intent(this, InstitutionsActivity::class.java)) }
-        b.btnRelationships.setOnClickListener { startActivity(Intent(this, RelationshipsActivity::class.java)) }
-        b.btnSettings.setOnClickListener { startActivity(Intent(this, SettingsActivity::class.java)) }
-        b.btnScanLog.setOnClickListener { startActivity(Intent(this, CallLogReviewActivity::class.java)) }
+        b.cardScan.setOnClickListener { startActivity(Intent(this, CallLogReviewActivity::class.java)) }
+        b.cardRules.setOnClickListener { startActivity(Intent(this, RulesActivity::class.java)) }
+        b.cardInstitutions.setOnClickListener { startActivity(Intent(this, InstitutionsActivity::class.java)) }
+        b.cardSettings.setOnClickListener { startActivity(Intent(this, SettingsActivity::class.java)) }
 
         b.rvCalls.layoutManager = LinearLayoutManager(this)
         b.rvCalls.adapter = adapter
@@ -68,29 +69,35 @@ class MainActivity : AppCompatActivity() {
     private fun refresh() {
         val rm = getSystemService(RoleManager::class.java)
         val held = rm.isRoleHeld(RoleManager.ROLE_CALL_SCREENING)
+        val okColor = ContextCompat.getColor(this, R.color.levelOfficial)
+        val offColor = ContextCompat.getColor(this, R.color.levelUnknown)
+
         b.tvStatusTitle.text = if (held) "Protection is on" else "Protection is off"
-        b.tvStatusDetail.text = if (held) {
-            "CallSentry is your default call screener. Incoming calls are checked on this device before your phone rings."
-        } else {
-            "Set CallSentry as your default call screening app so it can decide who gets through."
-        }
+        b.tvStatusDetail.text =
+            if (held) "Calls are checked on this device before ringing"
+            else "Tap below to make CallSentry your screener"
         b.btnRole.visibility = if (held) View.GONE else View.VISIBLE
+        b.ivShield.setColorFilter(if (held) okColor else offColor)
+        b.ivShield.backgroundTintList =
+            android.content.res.ColorStateList.valueOf(
+                ContextCompat.getColor(this, if (held) R.color.circleGreen else R.color.circleGray)
+            )
 
         when (app.prefs.getString("unknown_policy", "silence")) {
-            "ring" -> b.rbRing.isChecked = true
-            "reject" -> b.rbReject.isChecked = true
-            else -> b.rbSilence.isChecked = true
+            "ring" -> b.tgPolicy.check(R.id.btnRing)
+            "reject" -> b.tgPolicy.check(R.id.btnReject)
+            else -> b.tgPolicy.check(R.id.btnSilence)
         }
 
         Thread {
             val calls = app.db.recentCalls(50)
             val (allowed, silenced, blocked) = app.db.stats()
             runOnUiThread {
-                b.tvStatScreened.text = (allowed + silenced + blocked).toString()
-                b.tvStatSilenced.text = silenced.toString()
-                b.tvStatBlocked.text = blocked.toString()
+                val total = allowed + silenced + blocked
+                b.tvStats.visibility = if (total == 0) View.INVISIBLE else View.VISIBLE
+                b.tvStats.text = "$total screened · $silenced silenced · $blocked blocked"
                 adapter.submit(calls)
-                b.tvEmptyCalls.visibility = if (calls.isEmpty()) View.VISIBLE else View.GONE
+                b.llEmptyCalls.visibility = if (calls.isEmpty()) View.VISIBLE else View.GONE
             }
         }.start()
     }

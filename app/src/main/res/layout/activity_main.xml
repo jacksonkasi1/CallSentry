@@ -16,136 +16,83 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="CallSentry"
-            app:subtitle="@string/tagline_secondary" />
+            app:title="CallSentry" />
 
+        <!-- Hero: protection status -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/tvStatusTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceTitleLarge"
-                    android:text="Protection status" />
-
-                <TextView
-                    android:id="@+id/tvStatusDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:text="Checking…" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnRole"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Set as default call screener" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:padding="16dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tvStatScreened"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                        android:text="0" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceLabelMedium"
-                        android:text="Screened" />
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivShield"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/circle_bg"
+                    android:padding="11dp"
+                    android:src="@drawable/ic_shield"
+                    android:contentDescription="Protection status" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvStatSilenced"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvStatusTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                        android:text="0" />
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:text="Protection status" />
 
                     <TextView
+                        android:id="@+id/tvStatusDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:alpha="0.75"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:text="Checking…" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRole"
+                        style="@style/Widget.Material3.Button.TonalButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceLabelMedium"
-                        android:text="Silenced" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tvStatBlocked"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                        android:text="0" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceLabelMedium"
-                        android:text="Blocked" />
+                        android:layout_marginTop="8dp"
+                        android:minWidth="0dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:text="Set as screener"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Policy: one-tap segmented control -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="12dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -156,37 +103,45 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:text="When an unknown number calls" />
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:text="Unknown callers" />
 
-                <RadioGroup
-                    android:id="@+id/rgPolicy"
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/tgPolicy"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="8dp"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/rbRing"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRing"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Let it ring (no screening)" />
+                        android:layout_weight="1"
+                        android:text="Ring" />
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/rbSilence"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSilence"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Silence — log it, don't ring" />
+                        android:layout_weight="1"
+                        android:text="Silence" />
 
-                    <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/rbReject"
-                        android:layout_width="match_parent"
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnReject"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Reject the call" />
-                </RadioGroup>
+                        android:layout_weight="1"
+                        android:text="Block" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Quick actions: 2x2 icon cards -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -195,23 +150,79 @@
             android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRules"
-                style="@style/Widget.Material3.Button.TonalButton"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardScan"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginEnd="4dp"
-                android:text="My rules" />
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1412405F">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnInstitutions"
-                style="@style/Widget.Material3.Button.TonalButton"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/circle_bg"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_search"
+                        android:contentDescription="Scan" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:text="Scan calls" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardRules"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="4dp"
-                android:text="Institutions" />
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1412405F">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/circle_bg"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_rules"
+                        android:contentDescription="Rules" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:text="Rules" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
         <LinearLayout
@@ -219,65 +230,144 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRelationships"
-                style="@style/Widget.Material3.Button.TonalButton"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardInstitutions"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginEnd="4dp"
-                android:text="Relationships" />
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1412405F">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSettings"
-                style="@style/Widget.Material3.Button.TonalButton"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/circle_bg"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_bank"
+                        android:contentDescription="Institutions" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:text="Institutions" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSettings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="4dp"
-                android:text="Settings" />
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#1412405F">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/circle_bg"
+                        android:padding="9dp"
+                        android:src="@drawable/ic_gear"
+                        android:contentDescription="Settings" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:text="Settings" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnScanLog"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
-            android:text="Review unsaved callers from call log" />
-
+        <!-- Recent calls -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="24dp"
             android:textAppearance="?attr/textAppearanceTitleMedium"
-            android:text="Recent screened calls" />
+            android:text="Recent calls" />
+
+        <TextView
+            android:id="@+id/tvStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.7"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:text="Nothing screened yet" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCalls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
             android:nestedScrollingEnabled="false" />
 
-        <TextView
-            android:id="@+id/tvEmptyCalls"
+        <LinearLayout
+            android:id="@+id/llEmptyCalls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:visibility="gone"
-            android:textAppearance="?attr/textAppearanceBodyMedium"
-            android:text="No calls screened yet. Once CallSentry is your default screener, decisions will appear here." />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:alpha="0.25"
+                android:src="@drawable/ic_shield"
+                android:contentDescription="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:text="Nothing screened yet" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:alpha="0.7"
+                android:textAppearance="?attr/textAppearanceBodySmall"
+                android:text="Screened calls will appear here" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

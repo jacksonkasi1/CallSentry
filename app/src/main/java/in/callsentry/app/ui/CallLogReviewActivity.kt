@@ -70,8 +70,12 @@ class CallLogReviewActivity : AppCompatActivity() {
         b.rvLog.layoutManager = LinearLayoutManager(this)
         b.rvLog.adapter = adapter
 
-        b.btnRescan.setOnClickListener {
-            if (hasPerms()) load() else permLauncher.launch(perms)
+        b.toolbar.inflateMenu(R.menu.menu_scan)
+        b.toolbar.setOnMenuItemClickListener {
+            if (it.itemId == R.id.action_refresh) {
+                if (hasPerms()) load() else permLauncher.launch(perms)
+                true
+            } else false
         }
 
         if (hasPerms()) load() else permLauncher.launch(perms)
@@ -162,10 +166,18 @@ class CallLogReviewActivity : AppCompatActivity() {
         MaterialAlertDialogBuilder(this)
             .setTitle(Phone.pretty(e.number))
             .setMessage(
-                if (e.outgoing > 0)
-                    "You have called this number ${e.outgoing} time(s), so it is likely known to you."
-                else
-                    "This number has only ever called you — you have never dialled it. Be cautious of unverified financial claims."
+                buildString {
+                    append(
+                        if (e.outgoing > 0)
+                            "You have called this number ${e.outgoing} time(s), so it is likely known to you."
+                        else
+                            "This number has only ever called you — you have never dialled it. Be cautious of unverified financial claims."
+                    )
+                    if (e.last > 0) {
+                        append("\nLast call: ")
+                        append(DateUtils.getRelativeTimeSpanString(this@CallLogReviewActivity, e.last))
+                    }
+                }
             )
             .setItems(options.toTypedArray()) { _, which ->
                 when (which) {
@@ -249,18 +261,14 @@ class CallLogReviewActivity : AppCompatActivity() {
 
             val meta = StringBuilder()
             meta.append(e.count).append(if (e.count == 1) " call" else " calls")
-            if (e.last > 0) {
-                meta.append(" · last ").append(DateUtils.getRelativeTimeSpanString(ctx, e.last))
+            if (e.missed > 0) {
+                meta.append(" · ").append(e.missed).append(" missed")
             }
             meta.append(
                 if (e.outgoing > 0) " · you called ${e.outgoing}×"
                 else " · never called by you"
             )
-            if (e.missed > 0) {
-                meta.append(" · ").append(e.missed).append(" missed")
-            }
-            e.label?.let { meta.append(" · your label: ").append(it) }
-            e.identity?.let { meta.append(" · ").append(it.name) }
+            e.label?.let { meta.append(" · ").append(it) }
             holder.b.tvLogMeta.text = meta.toString()
 
             val rule = e.rule
