@@ -4,11 +4,20 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:paddingStart="12dp"
-    android:paddingEnd="12dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:background="?attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/tvDir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textStyle="bold"
+        android:text="" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -17,32 +26,53 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvCallNumber"
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textStyle="bold"
             android:text="" />
 
         <TextView
-            android:id="@+id/tvCallMeta"
+            android:id="@+id/tvSub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="1dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:alpha="0.7"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:text="" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvCallBadge"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@drawable/badge_bg"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:textAppearance="?attr/textAppearanceLabelSmall"
-        android:text="" />
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tvBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/badge_bg"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textAppearance="?attr/textAppearanceLabelSmall"
+            android:text="" />
+    </LinearLayout>
 </LinearLayout>

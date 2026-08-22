@@ -23,6 +23,8 @@ class SettingsActivity : AppCompatActivity() {
         b.toolbar.setNavigationIcon(R.drawable.ic_back)
         b.toolbar.setNavigationOnClickListener { finish() }
 
+        Nav.setup(this, b.bottomNav.root, R.id.navSettings)
+
         b.rgUnknown.setOnCheckedChangeListener { _, id ->
             val value = when (id) {
                 R.id.rbUnkRing -> "ring"

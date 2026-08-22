@@ -79,6 +79,8 @@ class CallLogReviewActivity : AppCompatActivity() {
         }
 
         if (hasPerms()) load() else permLauncher.launch(perms)
+
+        Nav.setup(this, b.bottomNav.root, R.id.navScan)
     }
 
     private fun hasPerms(): Boolean = perms.all {
@@ -87,15 +89,23 @@ class CallLogReviewActivity : AppCompatActivity() {
 
     private fun showEmpty(msg: String) {
         adapter.submit(emptyList())
+        b.shimmerLog.visibility = android.view.View.GONE
+        b.rvLog.visibility = android.view.View.VISIBLE
         b.tvEmptyLog.text = msg
-        b.tvEmptyLog.visibility = View.VISIBLE
+        b.tvEmptyLog.visibility = android.view.View.VISIBLE
     }
 
     private fun load() {
-        b.tvEmptyLog.visibility = View.GONE
+        b.tvEmptyLog.visibility = android.view.View.GONE
+        if (adapter.itemCount == 0) {
+            b.shimmerLog.visibility = android.view.View.VISIBLE
+            b.rvLog.visibility = android.view.View.INVISIBLE
+        }
         Thread {
             val entries = scan()
             runOnUiThread {
+                b.shimmerLog.visibility = android.view.View.GONE
+                b.rvLog.visibility = android.view.View.VISIBLE
                 adapter.submit(entries)
                 if (entries.isEmpty()) showEmpty("No unsaved numbers found in your call log.")
             }

@@ -42,6 +42,8 @@ class RulesActivity : AppCompatActivity() {
         b.swTollfree.setOnCheckedChangeListener { _, c -> app.prefs.edit().putBoolean("preset_tollfree", c).apply() }
 
         b.fabAdd.setOnClickListener { showRuleDialog() }
+
+        Nav.setup(this, b.bottomNav.root, R.id.navRules)
     }
 
     override fun onResume() {

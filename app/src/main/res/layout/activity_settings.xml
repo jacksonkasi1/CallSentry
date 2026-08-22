@@ -6,21 +6,24 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="Settings" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginStart="-16dp"
+                android:layout_marginEnd="-16dp"
+                app:title="Settings" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -121,4 +124,8 @@
                 android:text="CallSentry 0.1.0 — Know who's calling. Decide who gets through." />
         </LinearLayout>
     </ScrollView>
+
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/include_bottom_nav" />
 </LinearLayout>
